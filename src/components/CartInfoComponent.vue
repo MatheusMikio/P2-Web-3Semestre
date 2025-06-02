@@ -5,21 +5,6 @@
     <div class="space-y-4 mb-6">
       <div class="flex items-center border-b pb-4">
         <img 
-          src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/1.webp" 
-          class="w-20 h-20 object-cover rounded mr-4"
-          alt="Produto">
-        <div class="flex-grow">
-          <h3 class="font-medium text-gray-800">AAAAAAAAAAAAAAAAAAAAAAAAAAA</h3>
-          <p class="text-sm text-gray-500">Quantidade: 1</p>
-        </div>
-        <div class="text-right">
-          <p class="font-medium text-gray-800">R$ 8.999,99</p>
-          <button class="text-red-500 text-sm mt-1">Remover</button>
-        </div>
-      </div>
-
-      <div class="flex items-center border-b pb-4">
-        <img 
           src="https://via.placeholder.com/150" 
           class="w-20 h-20 object-cover rounded mr-4"
           alt="Produto">

@@ -1,12 +1,14 @@
 <template>
-    <ProductDetailsComponent/>
+  <div class="">
+    <div class="6">
+      <ProductComponent 
+        v-for="product in products" 
+        :key="product.id" 
+        :product="product" 
+      />
+    </div>
+  </div>
 </template>
-
-<script>
-import ProductDetailsComponent from '../components/ProductDetailsComponent.vue';
-export default {
-    components: {
-        ProductDetailsComponent
-    },
-}
+<script setup>
+import ProductComponent from '../components/ProductDetailsComponent.vue';
 </script>
