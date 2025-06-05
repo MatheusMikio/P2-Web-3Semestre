@@ -6,16 +6,24 @@
         
         <div class="flex items-center gap-4 w-full md:w-auto">
             <div class="flex items-center bg-blue-500 rounded-full px-3 py-1 w-full md:w-auto">
-                <input type="text" class="bg-transparent outline-none placeholder-blue-200 w-full" placeholder="Pesquise seu produto....">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+                <input 
+                    type="text" 
+                    v-model="searchQuery"
+                    @keyup.enter="searchProducts"
+                    class="bg-transparent outline-none placeholder-blue-200 w-full" 
+                    placeholder="Pesquise seu produto....">
+                <svg 
+                @click="searchProducts"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2 cursor-pointer">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
                 </svg>
             </div>
             
             <div class="md:hidden">
                 <button @click="isOpen = !isOpen" 
                 class="text-white focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <svg 
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
@@ -45,10 +53,38 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data() {
         return {
-            isOpen: false
+            isOpen: false,
+            searchQuery: ''
+        }
+    },
+    watch: {
+        searchQuery(newVal) {
+            if (newVal === '') {
+                this.$router.push({ path: '/', query: {} });
+                this.$emit('reset-search');
+                console.log('Campo de busca limpo');
+                this.searchProducts();
+            }
+        }
+    },
+    methods: {
+        async searchProducts() {
+            if (this.searchQuery.trim()) {
+                const response = await axios.get(`https://dummyjson.com/products/search?q=${this.searchQuery}`);
+                this.$router.push({
+                    path: '/',
+                    query: { search: this.searchQuery }
+                });
+                this.$emit('search-results', response.data.products);
+            } else {
+                this.$router.push({ path: '/', query: {} });
+                this.$emit('reset-search');
+                console.log('Resetando');
+            }
         }
     }
 }

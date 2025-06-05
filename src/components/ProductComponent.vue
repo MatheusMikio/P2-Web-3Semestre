@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-xs rounded-lg overflow-hidden shadow-lg m-5 bg-white transition-transform duration-300 hover:scale-105 hover:shadow-xl">
         <router-link
-        to="/product">
+        :to="`/product/${product.id}`">
             <div class="relative">
                 <img class="w-full h-40 md:h-48 lg:h-56 object-cover" :src="product.thumbnail" :alt="product.title">
             </div>
@@ -20,7 +20,7 @@
                     </div>
 
                 </div>
-                <h2 class="text-gray-600 text-sm mb-2">Paleta de sombras com 12 cores vibrantes e espelho</h2>
+                <h2 class="text-gray-600 text-sm mb-2">{{ product.description }}</h2>
                 <div class="flex gap-2">
                     <span class="text-xs bg-gray-200 px-2 py-1 rounded mb-1" v-for="tag in product.tags">{{ tag }}</span>
                 </div>

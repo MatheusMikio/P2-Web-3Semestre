@@ -1,8 +1,12 @@
-<script setup>
-import NavbarComponent from './components/NavbarComponent.vue' 
-</script>
-
 <template>
     <NavbarComponent/>
-    <router-view></router-view>
+    <router-view :products="products" />
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import NavbarComponent from './components/NavbarComponent.vue';
+
+const products = ref([]);
+
+</script>

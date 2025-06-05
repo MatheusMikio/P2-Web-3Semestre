@@ -5,7 +5,7 @@
     <div class="space-y-4 mb-6">
       <div class="flex items-center border-b pb-4">
         <img 
-          src="https://via.placeholder.com/150" 
+          src="#" 
           class="w-20 h-20 object-cover rounded mr-4"
           alt="Produto">
         <div class="flex-grow">
