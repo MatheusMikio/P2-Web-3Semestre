@@ -3,10 +3,10 @@
     <div class="flex flex-col md:flex-row gap-6">
       <div class="w-full md:w-1/2">
         <div class="bg-white p-4 rounded-lg shadow mb-4">
-          <img :src="product.images[0]" class="w-full h-auto rounded" :alt="product.title">
+          <img :src="mainImage" class="w-full h-auto rounded" :alt="product.title">
         </div>
         <div class="grid grid-cols-4 gap-2">
-          <div v-for="(image, index) in product.images" :key="index" class="border rounded p-1 cursor-pointer">
+          <div v-for="(image, index) in product.images" :key="index" class="border rounded p-1 cursor-pointer" @click="setMainImage(image)">
             <img :src="image" class="w-full h-auto" :alt="`Miniatura ${index + 1}`">
           </div>
         </div>
@@ -97,10 +97,26 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      mainImage: '' 
+    };
+  },
+  watch: {
+    'product': {
+      handler(newProduct) {
+        if (newProduct && newProduct.images && newProduct.images.length > 0) {
+          this.mainImage = newProduct.images[0]; 
+        }
+      },
+      immediate: true 
+    }
+  },
+  methods: {
+    setMainImage(image) {
+      this.mainImage = image;
+    }
   }
 };
 </script>
-
-<style scoped>
-/* Adicione estilos específicos do componente aqui, se necessário */
-</style>

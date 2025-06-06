@@ -66,7 +66,6 @@ export default {
             if (newVal === '') {
                 this.$router.push({ path: '/', query: {} });
                 this.$emit('reset-search');
-                console.log('Campo de busca limpo');
                 this.searchProducts();
             }
         }
@@ -83,7 +82,6 @@ export default {
             } else {
                 this.$router.push({ path: '/', query: {} });
                 this.$emit('reset-search');
-                console.log('Resetando');
             }
         }
     }
