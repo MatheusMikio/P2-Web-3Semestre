@@ -39,13 +39,10 @@
           <button @click="addToCart(product)" class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 rounded-full font-medium">
             Adicionar ao carrinho
           </button>
-          <router-link
-          to="/cart"
+          <button @click="buyNow(product)"
           class="bg-orange-400 hover:bg-orange-500 py-2 px-4 rounded-full font-medium text-center ">
-            <button @click="addToCart(product)">
-              Comprar agora
-            </button>
-          </router-link>
+            Comprar agora
+          </button>
         </div>
       </div>
     </div>
@@ -138,6 +135,10 @@ export default {
       text: `${product.title} foi adicionado ao carrinho`,
       type: 'success'
       });
+    },
+    buyNow(product) {
+      this.addToCart(product);
+      this.$router.push('/cart');
     }
   }
 };
