@@ -42,7 +42,7 @@
           <router-link
           to="/cart"
           class="bg-orange-400 hover:bg-orange-500 py-2 px-4 rounded-full font-medium text-center ">
-            <button >
+            <button @click="addToCart(product)">
               Comprar agora
             </button>
           </router-link>
