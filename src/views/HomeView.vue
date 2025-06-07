@@ -35,28 +35,7 @@ import { useRoute } from 'vue-router';
 import axios from 'axios';
 import ProductComponent from '../components/ProductComponent.vue';
 
-const app = new Vue({
-  el: '#app',
-  data: {
-    name: '',
-    valor: 0
-  },
-  mounted() {
-    if (localStorage.name) {
-      this.name = localStorage.name;
-    }
-    if (localStorage.age) {
-      this.valor = localStorage.valor;
-    }
-  },
-  methods: {
-    add() {
-      localStorage.name = this.name;
-      localStorage.valor = this.valor;
-      console.log('now pretend I did more stuff...');
-    }
-  }
-})
+// c
 
 const products = ref([]);
 const skip = ref(0);
@@ -72,7 +51,7 @@ const fetchProducts = async () => {
         title: product.title,
         description: product.description,
         rating: product.rating,
-        price: `R$ ${product.price.toFixed(2).replace('.', ',')}`,
+        price: product.price, 
         tags: product.tags || [],
         thumbnail: product.thumbnail,
         stock: product.stock,
@@ -87,7 +66,7 @@ const searchProducts = async (query) => {
         title: product.title,
         description: product.description,
         rating: product.rating,
-        price: `R$ ${product.price.toFixed(2).replace('.', ',')}`,
+        price: product.price, 
         tags: product.tags || [],
         thumbnail: product.thumbnail,
         stock: product.stock,

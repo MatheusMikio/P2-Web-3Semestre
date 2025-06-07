@@ -29,30 +29,39 @@
         </router-link>
         <div class="px-6 pt-4 pb-2 flex justify-between items-center">
       <span class="text-lg font-bold text-gray-800">
-        {{ product?.price }}
+        R$ {{ product?.price.toFixed(2).replace('.', ',') }}
       </span>
-      <router-link
-      :to="`/cart/${product.id}`">
-      <input type="hidden" v-model ="name" :value = " `${product.title}`">
-      <input type="hidden" v-model ="valor" :value = "`${product.price}`">
-        <button @click="add"
+
+        <button @click="addToCart(product)"
         class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full transition-colors"
         :disabled="!product"
         aria-label="Adicionar ao carrinho"
         >
         Comprar
         </button>
-      </router-link>
       
     </div>
     </div>
 </template>
 
 <script setup>
-import data from "../views/home.vue"
+import { useStore } from 'vuex';
+
+const store = useStore();
+
 defineProps({
     product: {
         type: Object,
     }
-})
+});
+
+const addToCart = (product) => {
+  const itemToAdd = {
+    id: product.id,
+    name: product.title, 
+    image: product.thumbnail, 
+    price: parseFloat(product.price)
+  };
+  store.commit('addToCart', itemToAdd);
+};
 </script>

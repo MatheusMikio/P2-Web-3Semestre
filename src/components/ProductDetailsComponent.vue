@@ -24,7 +24,7 @@
         </div>
         
         <div class="bg-gray-100 p-4 rounded-lg mb-4">
-          <p class="text-2xl font-bold text-red-600 mb-2">R$ {{ product.price.toFixed(2) }}</p>
+          <p class="text-2xl font-bold text-red-600 mb-2">R$ {{ product.price.toFixed(2).replace('.', ',') }}</p>
           <p class="text-sm">Frete: <span class="font-semibold">Grátis</span> para seu endereço</p>
         </div>
         
@@ -36,7 +36,7 @@
         </div>
         
         <div class="flex flex-col space-y-2">
-          <button class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 rounded-full font-medium">
+          <button @click="addToCart(product)" class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 rounded-full font-medium">
             Adicionar ao carrinho
           </button>
           <router-link
@@ -90,6 +90,8 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+
 export default {
   name: 'ProductDetailsComponent',
   props: {
@@ -113,9 +115,22 @@ export default {
       immediate: true 
     }
   },
+  setup() {
+    const store = useStore();
+    return { store };
+  },
   methods: {
     setMainImage(image) {
       this.mainImage = image;
+    },
+    addToCart(product) {
+      const itemToAdd = {
+        id: product.id,
+        name: product.title, 
+        image: product.thumbnail || (product.images && product.images.length > 0 ? product.images[0] : ''), 
+        price: parseFloat(product.price), 
+      };
+      this.store.commit('addToCart', itemToAdd);
     }
   }
 };
