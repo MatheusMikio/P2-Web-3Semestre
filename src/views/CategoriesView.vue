@@ -1,13 +1,15 @@
 <template>
-    <CategoriesProductsComponent
-    v-for="(index,product) in products" 
-        :key="index"
-        :categorie="product"
-    />
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
+        <CategoriesProductsComponent
+        v-for="product in products"
+            :key= product.categoria
+            :categorie="product"
+        />
+    </div>
     
 </template>
 <script>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted} from 'vue';
 import axios from 'axios';
 import CategoriesProductsComponent from '../components/CategoriesProductsComponent.vue'
 export default {

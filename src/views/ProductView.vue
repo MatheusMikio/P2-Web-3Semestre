@@ -4,7 +4,7 @@
       />
 </template>
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import ProductDetailsComponent from '../components/ProductDetailsComponent.vue';
