@@ -1,14 +1,13 @@
-![image](https://github.com/user-attachments/assets/afdb080f-e28b-4bb8-9634-1ddfbcd0335d)![image](https://github.com/user-attachments/assets/338f05b2-8010-44fc-819a-71417352f312)# Site ecommerce
+# Site ecommerce
 
 Um ecommerce onde mostrara os produtos disponiveis para compra, tendo como pesquisar pelo nome do produto ou sua categoria.
 Onde pode ser adicionado a um carrinho para comprar, podendo mudar sua quantidade ou excluir de seu carrinho de compra.
 ------------------------------------------------------------------------------------------------------------------------------
 Para estar rodando o projeto precisa estar instalando as dependencias.
 1-npm install
-2-
-3-
-2-npm run dev
-3- o
+2-npm install vuex@next
+3-npm install vue3-notification
+4-npm run dev
 ------------------------------------------------------------------------------------------------------------------------------
 
 ![image](https://github.com/user-attachments/assets/a0eafcfb-bd15-4a29-847f-8d3e73868d14)
@@ -19,4 +18,4 @@ Para estar rodando o projeto precisa estar instalando as dependencias.
 
 ------------------------------------------------------------------------------------------------------------------------------
 Video do site funcionando
-
+https://youtu.be/EAo8FkA2SCQ
