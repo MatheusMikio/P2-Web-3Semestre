@@ -1,14 +1,13 @@
 <template>
     <CategoriesProductsComponent
-    v-for="product in products" 
-        :key="product.url" 
-        :product="product"
+    v-for="(index,product) in products" 
+        :key="index"
+        :categorie="product"
     />
     
 </template>
 <script>
 import { ref, onMounted, watch } from 'vue';
-import { useRoute } from 'vue-router';
 import axios from 'axios';
 import CategoriesProductsComponent from '../components/CategoriesProductsComponent.vue'
 export default {
@@ -20,7 +19,6 @@ export default {
 const fetchProducts = async () => {
     const response = await axios.get(`https://dummyjson.com/products/categories`);
     products.value = response.data.products.map(product => ({
-        id: product.id,
         categoria: product.slug,
         name: product.name,
         url: product.url
