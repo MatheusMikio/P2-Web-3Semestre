@@ -12,13 +12,13 @@
         </router-link>
         <div class="flex-1">
           <h3 class="text-lg font-semibold">{{ item.name }}</h3>
-          <p class="text-gray-600">Preço: R$ {{ item.price.toFixed(2) }}</p>
+          <p class="text-gray-600">Preço: R$ {{ formatPrice(item.price) }}</p>
           <div class="flex items-center mt-2">
             <button @click="decreaseItemQuantity(item.id)" class="bg-gray-200 text-gray-700 px-2 py-1 rounded-l-md hover:bg-gray-300">-</button>
             <span class="px-3 py-1 bg-gray-100 text-gray-800">{{ item.quantity }}</span>
             <button @click="increaseItemQuantity(item.id)" class="bg-gray-200 text-gray-700 px-2 py-1 rounded-r-md hover:bg-gray-300">+</button>
           </div>
-          <p class="text-gray-800 font-bold mt-2">Total: R$ {{ (item.price * item.quantity).toFixed(2) }}</p>
+          <p class="text-gray-800 font-bold mt-2">Total: R$ {{ formatPrice(item.price * item.quantity) }}</p>
         </div>
         <button @click="removeFromCart(item.id)" class="text-red-500 hover:text-red-700 text-sm">Remover Item</button>
       </div>
@@ -27,7 +27,7 @@
     <div class="border-t pt-4">
       <div class="flex justify-between text-gray-700">
         <span>Subtotal:</span>
-        <span>R$ {{ subtotal.toFixed(2) }}</span>
+        <span>R$ {{ formatPrice(subtotal) }}</span>
       </div>
       <div class="flex justify-between text-gray-700">
         <span>Frete:</span>
@@ -35,7 +35,7 @@
       </div>
       <div class="flex justify-between font-bold text-lg mt-2">
         <span>Total:</span>
-        <span>R$ {{ total.toFixed(2) }}</span>
+        <span>R$ {{ formatPrice(total) }}</span>
       </div>
     </div>
 
@@ -85,6 +85,13 @@ export default {
       });
     };
 
+    const formatPrice = (value) => {
+      if (typeof value !== 'number') {
+        return value;
+      }
+      return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    };
+
     return {
       cartItems,
       subtotal,
@@ -94,6 +101,7 @@ export default {
       decreaseItemQuantity,
       increaseItemQuantity,
       finishPurchase,
+      formatPrice,
     };
   },
 };

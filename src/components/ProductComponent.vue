@@ -29,7 +29,7 @@
         </router-link>
         <div class="px-6 pt-4 pb-2 flex justify-between items-center">
       <span class="text-lg font-bold text-gray-800">
-        R$ {{ typeof product?.price === 'number' ? product.price.toFixed(2).replace('.', ',') : product?.price }}
+        R$ {{ formatPrice(product?.price) }}
       </span>
 
         <button @click="addToCart(product)"
@@ -54,6 +54,13 @@ defineProps({
         type: Object,
     }
 });
+
+const formatPrice = (value) => {
+  if (typeof value !== 'number') {
+    return value;
+  }
+  return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+};
 
 const addToCart = (product) => {
   const itemToAdd = {

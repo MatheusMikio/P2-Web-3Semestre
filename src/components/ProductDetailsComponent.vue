@@ -24,7 +24,7 @@
         </div>
         
         <div class="bg-gray-100 p-4 rounded-lg mb-4">
-          <p class="text-2xl font-bold text-red-600 mb-2">R$ {{ product.price.toFixed(2).replace('.', ',') }}</p>
+          <p class="text-2xl font-bold text-red-600 mb-2">R$ {{ formatPrice(product.price) }}</p>
           <p class="text-sm">Frete: <span class="font-semibold">Grátis</span> para seu endereço</p>
         </div>
         
@@ -120,6 +120,12 @@ export default {
   methods: {
     setMainImage(image) {
       this.mainImage = image;
+    },
+    formatPrice(value) {
+      if (typeof value !== 'number') {
+        return value;
+      }
+      return value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     },
     addToCart(product) {
       const itemToAdd = {
