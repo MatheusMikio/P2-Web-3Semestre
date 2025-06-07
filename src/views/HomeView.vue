@@ -27,10 +27,36 @@
 </template>
 
 <script setup>
+
+
+
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import ProductComponent from '../components/ProductComponent.vue';
+
+const app = new Vue({
+  el: '#app',
+  data: {
+    name: '',
+    valor: 0
+  },
+  mounted() {
+    if (localStorage.name) {
+      this.name = localStorage.name;
+    }
+    if (localStorage.age) {
+      this.valor = localStorage.valor;
+    }
+  },
+  methods: {
+    add() {
+      localStorage.name = this.name;
+      localStorage.valor = this.valor;
+      console.log('now pretend I did more stuff...');
+    }
+  }
+})
 
 const products = ref([]);
 const skip = ref(0);
