@@ -1,4 +1,4 @@
-# Site ecommerce
+# Site E-commerce
 
 Um ecommerce onde mostrara os produtos disponiveis para compra, tendo como pesquisar pelo nome do produto ou sua categoria.
 Onde pode ser adicionado a um carrinho para comprar, podendo mudar sua quantidade ou excluir de seu carrinho de compra.
