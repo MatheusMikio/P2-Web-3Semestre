@@ -31,19 +31,25 @@
       <span class="text-lg font-bold text-gray-800">
         {{ product?.price }}
       </span>
-      
-      <button 
+      <router-link
+      :to="`/cart/${product.id}`">
+      <input type="hidden" v-model ="name" :value = " `${product.title}`">
+      <input type="hidden" v-model ="valor" :value = "`${product.price}`">
+        <button @click="add"
         class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full transition-colors"
         :disabled="!product"
         aria-label="Adicionar ao carrinho"
-      >
+        >
         Comprar
-      </button>
+        </button>
+      </router-link>
+      
     </div>
     </div>
 </template>
 
 <script setup>
+import data from "../views/home.vue"
 defineProps({
     product: {
         type: Object,
