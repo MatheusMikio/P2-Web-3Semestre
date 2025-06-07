@@ -46,6 +46,7 @@
 
 <script setup>
 import { useStore } from 'vuex';
+import { notify } from '@kyvg/vue3-notification';
 
 const store = useStore();
 
@@ -63,5 +64,12 @@ const addToCart = (product) => {
     price: parseFloat(product.price)
   };
   store.commit('addToCart', itemToAdd);
+  
+  // Adicione esta notificação
+  notify({
+    title: 'Produto adicionado',
+    text: `${product.title} foi adicionado ao carrinho`,
+    type: 'success'
+  });
 };
 </script>

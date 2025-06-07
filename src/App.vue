@@ -1,6 +1,7 @@
 <template>
         <NavbarComponent/>
         <router-view/>
+        <notifications /> <!-- Adicione esta linha -->
 </template>
 
 <script setup>
