@@ -40,6 +40,7 @@
     </div>
 
     <button
+      @click="finishPurchase"
       class="mt-6 w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
     >
       Finalizar Compra
@@ -50,6 +51,7 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { notify } from '@kyvg/vue3-notification'; 
 
 export default {
   name: 'CartInfoComponent',
@@ -73,6 +75,16 @@ export default {
       store.dispatch('increaseItemQuantity', productId);
     };
 
+    const finishPurchase = () => {
+      store.dispatch('clearCart'); 
+
+      notify({
+        title: 'Compra Finalizada!',
+        text: 'Sua compra foi concluída com sucesso.',
+        type: 'success'
+      });
+    };
+
     return {
       cartItems,
       subtotal,
@@ -81,6 +93,7 @@ export default {
       removeFromCart,
       decreaseItemQuantity,
       increaseItemQuantity,
+      finishPurchase,
     };
   },
 };

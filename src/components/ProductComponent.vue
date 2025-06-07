@@ -29,7 +29,7 @@
         </router-link>
         <div class="px-6 pt-4 pb-2 flex justify-between items-center">
       <span class="text-lg font-bold text-gray-800">
-        R$ {{ product?.price.toFixed(2).replace('.', ',') }}
+        R$ {{ typeof product?.price === 'number' ? product.price.toFixed(2).replace('.', ',') : product?.price }}
       </span>
 
         <button @click="addToCart(product)"
@@ -39,7 +39,6 @@
         >
         Comprar
         </button>
-      
     </div>
     </div>
 </template>
@@ -65,8 +64,7 @@ const addToCart = (product) => {
   };
   store.commit('addToCart', itemToAdd);
   
-  // Adicione esta notificação
-  notify({
+notify({
     title: 'Produto adicionado',
     text: `${product.title} foi adicionado ao carrinho`,
     type: 'success'

@@ -1,7 +1,6 @@
 <template>
   <router-link
     :to="`/categories/${categorie.categoria}`">
-
       <div class="m-4 bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl">
         <div class="relative h-40 bg-gray-200">
           <img 
@@ -18,9 +17,7 @@
           </router-link>
         </div>
       </div>
-      
   </router-link>
-  
 </template>
 
 <script setup>
@@ -29,8 +26,4 @@ defineProps({
         type: Object,
     }
 })
-
-
-
-
 </script>

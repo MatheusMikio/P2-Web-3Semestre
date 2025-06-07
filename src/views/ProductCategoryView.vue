@@ -36,7 +36,7 @@ export default {
           title: product.title,
           description: product.description,
           rating: product.rating,
-          price: `R$ ${product.price.toFixed(2).replace('.', ',')}`,
+          price: product.price, 
           tags: product.tags || [],
           thumbnail: product.thumbnail,
           stock: product.stock,

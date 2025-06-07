@@ -91,6 +91,7 @@
 
 <script>
 import { useStore } from 'vuex';
+import { notify } from '@kyvg/vue3-notification';
 
 export default {
   name: 'ProductDetailsComponent',
@@ -131,6 +132,12 @@ export default {
         price: parseFloat(product.price), 
       };
       this.store.commit('addToCart', itemToAdd);
+
+      notify({
+      title: 'Produto adicionado',
+      text: `${product.title} foi adicionado ao carrinho`,
+      type: 'success'
+      });
     }
   }
 };
