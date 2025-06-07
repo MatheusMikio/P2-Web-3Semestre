@@ -14,16 +14,24 @@ export default {
     components: {
         CategoriesProductsComponent,
     },
-}
+    setup() {
+        const products = ref([]);
+        const totalProducts = ref(0);
 
-const fetchProducts = async () => {
-    const response = await axios.get(`https://dummyjson.com/products/categories`);
-    products.value = response.data.products.map(product => ({
-        categoria: product.slug,
-        name: product.name,
-        url: product.url
-    }));
-    totalProducts.value = response.data.total;
-};
-onMounted(fetchProducts)
+        const fetchProducts = async () => {
+            const response = await axios.get(`https://dummyjson.com/products/categories`);
+            products.value = response.data.map(product => ({
+                categoria: product.slug,
+                name: product.name,
+                url: product.url
+            }));
+        };
+        onMounted(fetchProducts);
+
+        return {
+            products,
+            totalProducts
+        };
+    }
+}
 </script>

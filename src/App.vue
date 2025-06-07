@@ -1,6 +1,6 @@
 <template>
-    <NavbarComponent/>
-    <router-view :products="products"/>
+        <NavbarComponent/>
+        <router-view/>
 </template>
 
 <script setup>
